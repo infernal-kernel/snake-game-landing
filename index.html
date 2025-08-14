@@ -1,0 +1,139 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snake Game — Demo</title>
+  <meta name="description" content="Snake Game — juego sencillo y adictivo. Descárgalo en Google Play y contacta al desarrollador." />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    /* Minimal, responsive, single-file CSS */
+    :root{--accent:#4CAF50;--bg:#f7f7f7;--card:#ffffff;--muted:#666}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:#111}
+    header{background:linear-gradient(90deg,#e8f5e9,#e3f2fd);padding:28px 16px;text-align:center}
+    .container{max-width:980px;margin:24px auto;padding:0 16px}
+    .hero{display:flex;flex-direction:column;gap:18px;align-items:center}
+    .screenshot{width:100%;max-width:720px;border-radius:12px;box-shadow:0 6px 22px rgba(0,0,0,.12);overflow:hidden}
+    h1{margin:.2em 0;font-size:2rem}
+    p.lead{color:var(--muted);margin:0 0 8px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn-play{background:var(--accent);color:#fff}
+    .btn-contact{background:#fff;color:#111;border:1px solid #ddd}
+
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);margin-top:18px}
+    .row{display:flex;flex-wrap:wrap;gap:18px}
+    .col{flex:1 1 280px}
+    ul{margin:8px 0;padding-left:20px}
+    footer{margin:36px 0 80px;text-align:center;color:var(--muted);font-size:14px}
+
+    @media(min-width:800px){.hero{flex-direction:row;justify-content:space-between;align-items:center}.hero .content{flex:1;padding-right:20px}.screenshot{flex:1}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Snake Game</h1>
+      <p class="lead">Juego clásico tipo "Snake": controles personalizables, diseño limpio y partidas rápidas.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="content">
+        <div class="card">
+          <h2>Descripción breve</h2>
+          <p>Snake Game es un juego arcade sencillo pensado para partidas cortas. Cambia el tamaño y posición de los controles desde ajustes para adaptarlo a tu dedo.</p>
+
+          <div class="row">
+            <div class="col">
+              <h3>Características</h3>
+              <ul>
+                <li>Controles movibles y ajustables</li>
+                <li>Guardar récords locales</li>
+                <li>Gráficos ligeros y jogabilidad fluida</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Contacto</h3>
+              <p>Email: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a></p>
+              <p>Teléfono (opcional): 632905504</p>
+              <p><a href="https://infernal-kernel.github.io/snake-es-privacy/">Política de privacidad</a></p>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;" class="actions">
+            <!-- Replace PLAY_STORE_URL with your actual Google Play URL once published -->
+            <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.srtech.snake" target="_blank" rel="noopener">Abrir en Google Play</a>
+            <a class="btn btn-contact" href="mailto:samuelromerocloud18@gmail.com">Soporte</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="screenshot">
+        <!-- Put a real screenshot in /images/screenshot1.png when you host -->
+        <img src="/images/screenshot1.png" alt="Captura Snake Game" style="display:block;width:100%;height:auto"/>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:20px">
+      <h2>Instrucciones rápidas para publicar el sitio</h2>
+      <ol>
+        <li>Sube este archivo como <code>index.html</code> en tu hosting (GitHub Pages, Firebase Hosting, Netlify, Surge, etc.).</li>
+        <li>Si ya tienes una política de privacidad pública, puedes usarla directamente. He actualizado el enlace a: <code>https://infernal-kernel.github.io/snake-es-privacy/</code>. Si no tienes una, crea también <code>privacy.html</code> (plantilla incluida más abajo) y súbela a la misma web.</li>
+        <li>Asegúrate de que la URL sea HTTPS y accesible públicamente (Play Console lo requiere).</li>
+        <li>En Play Console pega la URL del sitio (p. ej. <code>https://tudominio.com</code>) y, si corresponde, la URL de la política de privacidad (p. ej. <code>https://tudominio.com/privacy.html</code>).</li>
+      </ol>
+      <p style="margin-top:6px;color:var(--muted)">Si no tienes dominio, usa GitHub Pages o Firebase Hosting (gratuitos) con HTTPS.</p>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>Privacidad y permisos</h2>
+      <p>Si tu app no recopila datos fuera del dispositivo (solo almacenamiento local) normalmente no necesitas política de privacidad estricta, pero Google recomienda incluir una página de "Privacidad" explicando qué datos se usan. Si usas Firebase, anuncios o seguimiento, SÍ necesitarás una política de privacidad pública.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Desarrollador: Samuel Romero • Email: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a></p>
+    <p>© <span id="year"></span> Snake Game</p>
+  </footer>
+
+  <script>
+    // Pequeño script para el año y mejoras menores
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
+<!-- privacy.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de privacidad — Snake Game</title>
+  <style>body{font-family:Inter,Arial,sans-serif;max-width:800px;margin:24px auto;padding:16px;color:#111}h1{color:#2E7D32}a{color:#2E7D32}</style>
+</head>
+<body>
+  <h1>Política de privacidad</h1>
+  <p>Última actualización: YYYY-MM-DD</p>
+  <h2>Resumen</h2>
+  <p>Snake Game es un juego local que no recopila información personal del usuario fuera del dispositivo a menos que el usuario lo permita explícitamente (por ejemplo, mediante funciones adicionales como servicios en la nube o integraciones de terceros).</p>
+
+  <h2>Qué datos recogemos</h2>
+  <ul>
+    <li>Datos locales: puntuaciones y preferencias guardadas en el dispositivo.</li>
+    <li>Datos opcionales: si el usuario elige integrar servicios externos (p. ej. Firebase), se informará y pedirá consentimiento específico.</li>
+  </ul>
+
+  <h2>Cómo usamos los datos</h2>
+  <p>Los datos se usan únicamente para mejorar la experiencia de juego (guardar récords y configuraciones). No vendemos ni compartimos información personal con terceros para fines comerciales.</p>
+
+  <h2>Contacto</h2>
+  <p>Si tienes dudas sobre la privacidad, escríbenos a: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a>.</p>
+</body>
+</html>
