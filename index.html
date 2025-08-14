@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="es">
 <head>
@@ -22,6 +21,8 @@
     .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600}
     .btn-play{background:var(--accent);color:#fff}
     .btn-contact{background:#fff;color:#111;border:1px solid #ddd}
+    .nav-links{margin-top:8px}
+    .nav-links a{margin:0 8px;color:var(--muted);text-decoration:none;font-size:14px}
 
     .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);margin-top:18px}
     .row{display:flex;flex-wrap:wrap;gap:18px}
@@ -30,17 +31,31 @@
     footer{margin:36px 0 80px;text-align:center;color:var(--muted);font-size:14px}
 
     @media(min-width:800px){.hero{flex-direction:row;justify-content:space-between;align-items:center}.hero .content{flex:1;padding-right:20px}.screenshot{flex:1}}
+
+    /* background canvas */
+    #bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.12}
+    main, header, footer, .container, .card, .hero, .screenshot, #privacySection {position:relative; z-index:1}
+
+    /* Privacy section styling (hidden by default) */
+    #privacySection{display:none;padding:24px}
+    #privacySection.active{display:block}
+    .back-link{display:inline-block;margin-top:12px;color:var(--accent);text-decoration:none}
+    code{background:#f4f4f4;padding:2px 6px;border-radius:4px}
   </style>
 </head>
 <body>
-  <header>
+  <header id="top">
     <div class="container">
       <h1>Snake Game</h1>
       <p class="lead">Juego clásico tipo "Snake": controles personalizables, diseño limpio y partidas rápidas.</p>
+      <div class="nav-links">
+        <a href="#home">Inicio</a> ·
+        <a href="#privacy">Política de privacidad</a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="homeSection">
     <section class="hero">
       <div class="content">
         <div class="card">
@@ -53,14 +68,13 @@
               <ul>
                 <li>Controles movibles y ajustables</li>
                 <li>Guardar récords locales</li>
-                <li>Gráficos ligeros y jogabilidad fluida</li>
+                <li>Gráficos ligeros y jugabilidad fluida</li>
               </ul>
             </div>
             <div class="col">
               <h3>Contacto</h3>
               <p>Email: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a></p>
-              <p>Teléfono (opcional): 632905504</p>
-              <p><a href="https://infernal-kernel.github.io/snake-es-privacy/">Política de privacidad</a></p>
+              <p><a href="https://infernal-kernel.github.io/snake-es-privacy/" target="_blank" rel="noopener">Política de privacidad (externa)</a></p>
             </div>
           </div>
 
@@ -73,67 +87,142 @@
       </div>
 
       <div class="screenshot">
-        <!-- Put a real screenshot in /images/screenshot1.png when you host -->
+        <!-- Put real screenshots in images/ when you host -->
         <img src="/images/screenshot1.png" alt="Captura Snake Game" style="display:block;width:100%;height:auto"/>
       </div>
     </section>
 
-    <section class="card" style="margin-top:20px">
-      <h2>Instrucciones rápidas para publicar el sitio</h2>
-      <ol>
-        <li>Sube este archivo como <code>index.html</code> en tu hosting (GitHub Pages, Firebase Hosting, Netlify, Surge, etc.).</li>
-        <li>Si ya tienes una política de privacidad pública, puedes usarla directamente. He actualizado el enlace a: <code>https://infernal-kernel.github.io/snake-es-privacy/</code>. Si no tienes una, crea también <code>privacy.html</code> (plantilla incluida más abajo) y súbela a la misma web.</li>
-        <li>Asegúrate de que la URL sea HTTPS y accesible públicamente (Play Console lo requiere).</li>
-        <li>En Play Console pega la URL del sitio (p. ej. <code>https://tudominio.com</code>) y, si corresponde, la URL de la política de privacidad (p. ej. <code>https://tudominio.com/privacy.html</code>).</li>
-      </ol>
-      <p style="margin-top:6px;color:var(--muted)">Si no tienes dominio, usa GitHub Pages o Firebase Hosting (gratuitos) con HTTPS.</p>
-    </section>
-
     <section class="card" style="margin-top:18px">
       <h2>Privacidad y permisos</h2>
-      <p>Si tu app no recopila datos fuera del dispositivo (solo almacenamiento local) normalmente no necesitas política de privacidad estricta, pero Google recomienda incluir una página de "Privacidad" explicando qué datos se usan. Si usas Firebase, anuncios o seguimiento, SÍ necesitarás una política de privacidad pública.</p>
+      <p>Si tu app no recopila datos fuera del dispositivo (solo almacenamiento local) normalmente no necesitas una política de privacidad estricta, pero Google recomienda incluir una página de "Privacidad" explicando qué datos se usan. Si usas Firebase, anuncios o seguimiento, SÍ necesitarás una política de privacidad pública.</p>
     </section>
-
   </main>
 
+  <!-- Integrated Privacy section (same file) -->
+  <article id="privacySection" class="">
+    <div class="container card">
+      <h1>Política de privacidad</h1>
+      <p>Última actualización: YYYY-MM-DD</p>
+      <h2>Resumen</h2>
+      <p>Snake Game es un juego local que no recopila información personal del usuario fuera del dispositivo a menos que el usuario lo permita explícitamente (por ejemplo, mediante funciones adicionales como servicios en la nube o integraciones de terceros).</p>
+
+      <h2>Qué datos recogemos</h2>
+      <ul>
+        <li>Datos locales: puntuaciones y preferencias guardadas en el dispositivo.</li>
+        <li>Datos opcionales: si el usuario elige integrar servicios externos (p. ej. Firebase), se informará y pedirá consentimiento específico.</li>
+      </ul>
+
+      <h2>Cómo usamos los datos</h2>
+      <p>Los datos se usan únicamente para mejorar la experiencia de juego (guardar récords y configuraciones). No vendemos ni compartimos información personal con terceros para fines comerciales.</p>
+
+      <h2>Contacto</h2>
+      <p>Si tienes dudas sobre la privacidad, escríbenos a: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a>.</p>
+
+      <a href="#home" class="back-link">← Volver al inicio</a>
+    </div>
+  </article>
+
   <footer>
-    <p>Desarrollador: Samuel Romero • Email: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a></p>
-    <p>© <span id="year"></span> Snake Game</p>
+    <div class="container">
+      <p>Desarrollador: Samuel Romero • Email: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a></p>
+      <p>© <span id="year"></span> Snake Game</p>
+    </div>
   </footer>
 
   <script>
-    // Pequeño script para el año y mejoras menores
+    // Fill year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple hash-based navigation to show/hide Privacy section without extra files
+    function updateHashView() {
+      const hash = location.hash || '#home';
+      const privacy = document.getElementById('privacySection');
+      const home = document.getElementById('homeSection');
+      if (hash === '#privacy') {
+        privacy.classList.add('active');
+        home.style.display = 'none';
+        window.scrollTo(0,0);
+      } else {
+        privacy.classList.remove('active');
+        home.style.display = '';
+      }
+    }
+    window.addEventListener('hashchange', updateHashView);
+    updateHashView();
   </script>
-</body>
-</html>
 
+  <!-- Animated background snakes -->
+  <script>
+  (function(){
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bgCanvas';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
 
-<!-- privacy.html -->
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Política de privacidad — Snake Game</title>
-  <style>body{font-family:Inter,Arial,sans-serif;max-width:800px;margin:24px auto;padding:16px;color:#111}h1{color:#2E7D32}a{color:#2E7D32}</style>
-</head>
-<body>
-  <h1>Política de privacidad</h1>
-  <p>Última actualización: YYYY-MM-DD</p>
-  <h2>Resumen</h2>
-  <p>Snake Game es un juego local que no recopila información personal del usuario fuera del dispositivo a menos que el usuario lo permita explícitamente (por ejemplo, mediante funciones adicionales como servicios en la nube o integraciones de terceros).</p>
+    function resize(){canvas.width = window.innerWidth; canvas.height = window.innerHeight}
+    window.addEventListener('resize', resize); resize();
 
-  <h2>Qué datos recogemos</h2>
-  <ul>
-    <li>Datos locales: puntuaciones y preferencias guardadas en el dispositivo.</li>
-    <li>Datos opcionales: si el usuario elige integrar servicios externos (p. ej. Firebase), se informará y pedirá consentimiento específico.</li>
-  </ul>
+    function rand(min,max){return Math.random()*(max-min)+min}
 
-  <h2>Cómo usamos los datos</h2>
-  <p>Los datos se usan únicamente para mejorar la experiencia de juego (guardar récords y configuraciones). No vendemos ni compartimos información personal con terceros para fines comerciales.</p>
+    class Snake{
+      constructor(){
+        this.x = rand(0, canvas.width);
+        this.y = rand(0, canvas.height);
+        this.vx = rand(-1.2,1.2);
+        this.vy = rand(-1.2,1.2);
+        this.len = Math.floor(rand(8,20));
+        this.segs = [];
+        const spacing = rand(6,12);
+        for(let i=0;i<this.len;i++) this.segs.push({x:this.x - i*spacing, y:this.y});
+        this.h = Math.floor(rand(80,140)); // hue
+        this.alpha = rand(0.25,0.7);
+        this.lineW = rand(2,6);
+      }
+      update(){
+        // slight wandering movement
+        this.vx += (Math.sin(Date.now()/800 + this.h) * 0.06);
+        this.vy += (Math.cos(Date.now()/900 + this.h) * 0.06);
+        // limit speed
+        const max = 2.2;
+        const s = Math.hypot(this.vx, this.vy) || 1;
+        if(s > max){ this.vx = (this.vx/s)*max; this.vy = (this.vy/s)*max }
 
-  <h2>Contacto</h2>
-  <p>Si tienes dudas sobre la privacidad, escríbenos a: <a href="mailto:samuelromerocloud18@gmail.com">samuelromerocloud18@gmail.com</a>.</p>
+        this.x += this.vx; this.y += this.vy;
+        if(this.x < -50) this.x = canvas.width + 50;
+        if(this.x > canvas.width + 50) this.x = -50;
+        if(this.y < -50) this.y = canvas.height + 50;
+        if(this.y > canvas.height + 50) this.y = -50;
+
+        this.segs.unshift({x:this.x, y:this.y});
+        while(this.segs.length > this.len) this.segs.pop();
+      }
+      draw(ctx){
+        ctx.lineWidth = this.lineW;
+        ctx.strokeStyle = `hsla(${this.h},60%,45%,${this.alpha})`;
+        ctx.beginPath();
+        for(let i=0;i<this.segs.length;i++){
+          const s = this.segs[i];
+          if(i===0) ctx.moveTo(s.x, s.y); else ctx.lineTo(s.x, s.y);
+        }
+        ctx.stroke();
+        // small head dot
+        const head = this.segs[0];
+        ctx.fillStyle = `hsla(${this.h},60%,30%,${this.alpha})`;
+        ctx.beginPath(); ctx.arc(head.x, head.y, Math.max(2,this.lineW), 0, Math.PI*2); ctx.fill();
+      }
+    }
+
+    // You can adjust the number below to increase/decrease snakes
+    const snakes = Array.from({length:8}, () => new Snake());
+
+    function loop(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      for(const s of snakes){ s.update(); s.draw(ctx) }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+  </script>
+
 </body>
 </html>
